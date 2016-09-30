@@ -1,0 +1,5 @@
+project(Server)
+set(PROJECT_SOURCES main.cpp)
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+target_link_libraries(${PROJECT_NAME} nanomsg pthread)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 14)
