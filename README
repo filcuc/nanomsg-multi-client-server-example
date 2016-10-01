@@ -1,0 +1,13 @@
+Nanomsg example
+===========================
+
+This is an example of architecture in the case of multiple clients - single server.
+The idea is to:
+1) Use a REQ-REP protocol for the login phase. The login message contains the client
+endpoint for direct server connection
+2) The server spawn a new thread for each client. The thread connect a PAIR socket
+to the client endpoint received in the login phase (see 1)
+
+The user of a REQ-REP protocol allows the server to answer sequentially to each client.
+After this synchronous phase, the server and client can communicate freely with a
+PAIR socket.
