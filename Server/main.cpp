@@ -6,18 +6,18 @@
 
 #include <NM.h>
 #include <nanomsg/reqrep.h>
+#include <nanomsg/pair.h>
 
 using namespace std;
 
 void handle_client(const std::string& url) {
-    nm::Socket socket(NN_REQ);
+    nm::Socket socket(NN_PAIR);
     socket.connect(url);
     std::cout << "[Server] Handling client at url " << url << std::endl;
     for (int i = 0; i < 10; ++i) {
         std::string message { to_string(i) + ") Hello " + url + " this is the server :)" };
         std::cout << "[Server] Sending message to client " << url << std::endl;
         socket.send(message);
-        socket.receive();
         std::this_thread::sleep_for(1s);
     }
 }

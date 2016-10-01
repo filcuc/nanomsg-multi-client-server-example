@@ -3,6 +3,7 @@
 #include <memory>
 #include <NM.h>
 #include <nanomsg/reqrep.h>
+#include <nanomsg/pair.h>
 
 using namespace std;
 
@@ -27,13 +28,12 @@ int main(int argc, char *argv[])
 
     {
         std::cout << "[Client] Creating the receive socket" << std::endl;
-        nm::Socket receive_socket(NN_REP);
+        nm::Socket receive_socket(NN_PAIR);
         receive_socket.bind(receive_socket_endpoint);
         std::cout << "[Client] Wait for server to connect" << std::endl;
         for (int i = 0; i < 10; ++i) {
             std::string response = receive_socket.receive();
             std::cout << "[Client] Received " << response << " from the server" << std::endl;
-            receive_socket.send("ack");
        }
     }
 }
