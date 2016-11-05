@@ -39,11 +39,11 @@ public:
     ~Socket() { nn_close(socket_id); }
 
     void bind(const std::string& url) {
-        connection = std::make_unique<Connection>(socket_id, url, Connection::Type::Bind);
+        connection.reset(new Connection(socket_id, url, Connection::Type::Bind));
     }
 
     void connect(const std::string& url) {
-        connection = std::make_unique<Connection>(socket_id, url, Connection::Type::Connect);
+        connection.reset(new Connection(socket_id, url, Connection::Type::Connect));
     }
 
     void disconnect() {

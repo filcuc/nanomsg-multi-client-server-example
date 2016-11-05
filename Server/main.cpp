@@ -18,7 +18,7 @@ void handle_client(const std::string& url) {
         std::string message { to_string(i) + ") Hello " + url + " this is the server :)" };
         std::cout << "[Server] Sending message to client " << url << std::endl;
         socket.send(message);
-        std::this_thread::sleep_for(1s);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
 
